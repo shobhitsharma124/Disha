@@ -1,0 +1,50 @@
+<div class="row mb-2 ">
+  <div><h4>Trainer Preference:</h4></div>
+  <form #trainerForm = "ngForm">
+    <div class="form-row ml-5 mt-2">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" 
+            name="gender" id="inlineRadio1" value="Male" ngModel required>
+            <label class="form-check-label" for="inlineRadio1" >Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" 
+            name="gender" id="inlineRadio2" value="Female" ngModel required>
+            <label class="form-check-label" for="inlineRadio2" >Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" 
+            name="gender" id="inlineRadio3" value="No-preference" ngModel required>
+            <label class="form-check-label" for="inlineRadio3" required>No Preference</label>
+          </div>
+          
+    </div>
+</form>
+</div>
+
+<h4> Trainer's List </h4>
+
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let trainer of trainer">
+        <ng-template [ngIf]=" trainer.gender == trainerForm.value.gender ">
+            <td>{{trainer.id}}</td>
+            <td>{{trainer.name}}</td>
+            <td>{{trainer.gender}}</td>
+        </ng-template>
+        <ng-template [ngIf]="trainerForm.value.gender == 'No-preference'">
+            <td>{{trainer.id}}</td>
+            <td>{{trainer.name}}</td>
+            <td>{{trainer.gender}}</td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+

@@ -1,0 +1,182 @@
+<form class="" [formGroup]=f (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+        <label class="col-form-label col-md-1 pt-0">Name</label>
+        <div class="form-group col-md-5">
+          <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" formControlName="firstName" ngModule required>
+        </div>
+      
+        <div class="form-group col-md-5">
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="lastName" formControlName="lastName" pattern="[a-zA-z]+" ngModule required>
+        </div>
+    </div> 
+
+    <div *ngIf="isValidInput('firstName')" class="alert alert-danger">
+      <div *ngIf="f.controls['firstName'].errors.required">
+      First Name is required.
+      </div>
+    </div>
+    <div *ngIf="isValidInput('lastName')" class="alert alert-danger">
+      <div *ngIf="f.controls['lastName'].errors.required">
+      Last Name is required.
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" email
+        aria-describedby="emailHelp" name="email" ngModel required>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for="phone">Phone Number</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">+91</div>
+          </div>
+          <input type="text" class="form-control" id="phone" placeholder="1234567890" name="phone" formControlName="phone" ngModel required>
+        </div>
+      </div>
+    
+      <div class="form-group col-md-2">
+        <label for="age">Age</label>
+        <div class="input-group mb-2">
+            <input type="number" class="form-control" id="age" placeholder="Age" min='18' max="60" formControlName="age" name="age" ngModel required>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="isValidInput('phone')" class="alert alert-danger">
+      <div *ngIf="f.controls['phone'].errors.required">
+      Phone is required.
+      </div>
+    </div>
+    <div *ngIf="isValidInput('email')" class="alert alert-danger">
+      <div *ngIf="f.controls['email'].errors.required">
+      Email is required.
+      </div>
+      <div *ngIf="f.controls['email'].errors.pattern">
+      Must be a valid email format.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Shipping Address</label>
+      <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" formControlName="address" ngModel required>
+    </div>
+
+
+    <div class="form-group">
+      <label for="streetaddress">Street Address</label>
+      <input type="text" class="form-control" id="streetaddress"  name="streetaddress" placeholder="Apartment, studio, or floor" formControlName="streetaddress" ngModel required>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" formControlName="city" ngModel required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" name="state" formControlName="state" ngModel required>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="pincode">Zip</label>
+        <input type="text" class="form-control" id="pincode" name="zip" formControlName="zip" ngModel required>
+      </div>
+    </div> 
+    <div *ngIf="isValidInput('zip')" class="alert alert-danger">
+      <div *ngIf="f.controls['zip'].errors.required">
+      Zip is required.
+      </div>
+    </div>
+
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Trainer Preference</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="trainerpreference" name="trainerpreference" id="trainerpreference1" value="male" ngModel required>
+              <label class="form-check-label" for="trainerpreference1">
+                Male Preference
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="trainerpreference" name="trainerpreference" id="trainerpreference2" value="female" ngModel required>
+              <label class="form-check-label" for="trainerpreference2">
+                Female Preference
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="trainerpreference" name="trainerpreference" id="trainerpreference3" value="none" ngModel required>
+              <label class="form-check-label" for="trainerpreference3">
+                No Preference
+              </label>
+            </div>
+          </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Do you need a Physio Therapist?</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="physiotherapist" name="physiotherapist" id="physiotherapist1" value="yes" ngModel required>
+              <label class="form-check-label" for="physiotherapist1">
+                Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="physiotherapist" name="physiotherapist" id="physiotherapist2" value="no" ngModel required>
+              <label class="form-check-label" for="physiotherapist2">
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Select a package:</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="packages" formControlName="packages" id="packages1" value="500" (click)="calculateAmt(1)" ngModel required>
+              <label class="form-check-label" for="packages1">
+                One time Assessment only (Rs. 500 only)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="packages" formControlName="packages" id="packages2" value="1600" (click)="calculateAmt(2)" ngModel required>
+              <label class="form-check-label" for="packages2">
+                4 Sessions per Week (Rs. 400 per session)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="packages" formControlName="packages" id="packages3" value="1500" (click)="calculateAmt(3)" ngModel required>
+              <label class="form-check-label" for="packages3">
+                5 Sessions per Week (Rs. 300 per session)
+              </label>
+            </div>
+            <div class="form-check d-inline">
+                <input class="form-check-input" type="radio" name="packages" formControlName="packages" id="packages4" value="otherPackage.value" (click)="calculateAmt(0)" ngModel required>
+                <label class="form-check-label" for="packages4">
+                  Other
+                </label>
+              </div>
+          </div>
+        </div>
+
+      <div class="form-group">
+          <label for="amount"> Amount:  </label>
+          <label >{{amount}}{{text}}</label>
+      </div>
+
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
